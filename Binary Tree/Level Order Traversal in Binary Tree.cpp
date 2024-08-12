@@ -19,7 +19,6 @@ public:
         }
         queue<TreeNode*> q;
         q.push(root);
-        vector<int> sub;
         while(!q.empty()){
             vector<int> sub;
             int size=q.size();
