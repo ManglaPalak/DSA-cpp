@@ -1,3 +1,4 @@
+// ############################################# USING BFS #################################################################
 #include<unordered_map>
 #include<queue>
 bool isCyclic(int src,unordered_map<int,vector<int>>& adj,vector<bool>& visited){
@@ -41,3 +42,30 @@ string cycleDetection (vector<vector<int>>& edges, int n, int m){
     }
     return "No";
 }
+
+// ########################################################## USING DFS ########################################################
+bool dfs(int i,int parent,vector<int> adj[],vector<bool>& visited){
+        visited[i]=true;
+        for(int neigh:adj[i]){
+            if (!visited[neigh]){
+                if (dfs(neigh,i,adj,visited)){
+                    return true;
+                }
+            }
+            else if (parent!=neigh){
+                return true;
+            }
+        }
+        return false;
+    }
+    bool isCycle(int V, vector<int> adj[]) {
+        vector<bool> visited(V,false);
+        for(int i=0;i<V;i++){
+            if (!visited[i]){
+                if (dfs(i,-1,adj,visited)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
